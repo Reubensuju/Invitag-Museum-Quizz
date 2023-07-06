@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<head>
+<meta charset="UTF-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Invitag Museum Quiz - Home</title>
+<link rel="shortcut icon" type="image/png" href="static/img/home/Favicon.png">
+
+
+
+
+<!-- included js libraries and css file -->
+<link rel="stylesheet" href="static/code/GroupingImages/static/css/style.css">
+<link rel="stylesheet" href="static/code/GroupingImages/static/css/popup-style.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  
+<script type="text/javascript" src="static/code/GroupingImages/static/js/d3v4/d3.min.js"></script>
+<script src= "https://d3js.org/d3-dsv.v1.min.js"> </script> 
+<script src= "https://d3js.org/d3-fetch.v1.min.js"> </script> 
+<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script> 
+<script src="https://www.papaparse.com/resources/js/papaparse.js"></script>
+<script type="text/javascript" src="static/code/GroupingImages/static/js/delaunay/d3-delaunay.min.js"></script>
+<script type="text/javascript" src="static/code/GroupingImages/static/js/turf/turf.min.js"></script>  
+<script src="static/code/GroupingImages/static/js/voronoi/d3-weighted-voronoi.js"></script>  
+<script src="static/code/GroupingImages/static/js/voronoi/d3-voronoi-map.js"></script> 
+<script src= "static/code/GroupingImages/static/js/savePNG/saveSvgAsPng.js"> </script> 
+
+
+<style>
+
+table {
+		border-collapse: collapse;
+		border: 2px black solid;
+		font: 12px sans-serif;
+	}
+
+td {
+		border: 1px black solid;
+		padding: 5px;
+	}
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;             ;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+* {box-sizing: border-box}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: #4CAF50;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: white;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn-light {
+/*formatting goes here*/
+  background-color: #f2f2f2;
+  color: #6c1d45;
+  border: white;
+}
+.btn-outline-light {
+/*formatting goes here*/
+  background-color: #c4a5b5;
+  color: white;
+  border: white;
+}
+
+button:hover {
+  opacity:0.5;
+}
+
+/*-----------*/
+/* Modal box */
+/*-----------*/
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #6c1d45;
+  color: #888888;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+     
+<div class="container-fluid" style="background-color: #525252 ;  border: 0; "> 
+
+<!-- Main web view  style="height: 100%; width: 100%;-->
+<!-- Qatar Flag Maroon: #6c1d45 used in treemap -->
+<!-- Darker Maroon: #525252  to see treemap borders -->
+ 
+<!--  <div class="jumbotron">-->
+
+
+<!--  </div> -->
+<div class="row no-gutters" id="vis-container-main-view"  >
+<div class="col-xs-6 col-sm-8 col-lg-9" id="headerDivId">
+
+<h1 id="c0" style="text-align:center; font-family:monaco; color:white; background-color: #525252 ;">Invitag Museum Quizz</h1>
+
+
+ <!-- treemap view -->
+  <div 
+  class="col-xs-12 col-sm-12 col-lg-12" 
+  style="text-align:center;
+         border: 1px solid #525252 ;
+         background-color: #525252 ;" 
+  id="vis-container-scatterplot"  
+ > 
+   </div>
+ </div>
+   <!-- menu panel -->
+    <div class="col-xs-6 col-sm-4 col-lg-3" id="instructionsDiv" style="background-color: #525252 ;  border: 0; ">
+
+			<div >
+				<p></p>			   
+				<p></p>				
+				<a href="https://www.hbku.edu.qa/en/qcri" target="_blank">
+				<img src="static/img/home/QCRI_white_logo.png" alt="QCRI logo" class="center" style="text-align:center;max-width:200px;max-height:200px;width:auto;height:auto;">
+				</a>	
+				
+			</div>
+			
+			<div >
+			
+			  <h5 id="c1" style="color:white; font-size:medium;"> Correct Grouping</h5> 
+			  <div class="scorebar" style="float: left">
+				  <div class="scorebar_fill"></div>
+				  <span class="scorebar_text">1%</span>
+        </div>
+      </div>
+
+			<div>
+			  <input type="button" class="btn btn-light"id="showMismatchButtonId" value="Show Mismatch" onclick="showMismatchButton()"> </input>
+			  <br></br>
+      </div>
+
+      <div>
+        <img src="static/code/GroupingImages/static/images/BCLCimagesHighchart/webp/0.webp" id="ExpandIMG">
+        <br></br>
+      </div>	
+
+      <div class="ImageDetailBox">
+        <h4 style="text-align:center"><b>Painting Details</b></h4>
+        <p id="detail-ID"></p>
+        <p id="detail-Artist"></p>
+        <p id="detail-PaintingName"></p>
+        <p id="detail-Year"></p>
+    </div>
+      <br>
+
+			<div>
+        
+        <input type="button" class="btn btn-light" id="showSolution" value="Show Solution"> </input>
+        <input type="button" class="btn btn-light" id="reset" value="Reset"> </input>
+        <br></br>
+    
+      </div>
+			
+			
+			<div>
+			
+				<input type="button" class="btn btn-light" id="arabicId" value="عربي"> </input>
+			   <input type="button" class="btn btn-light" id="englishId" value="English"> </input>
+			   <br></br>
+			   <input type="button" class="btn btn-outline-light" id="idBtnAbout" style="border-color: #FFFFFF;" value="About"> </input>
+			   <input type="button" class="btn btn-outline-light" id="idBtnCredit" style="border-color: #FFFFFF;" value="Credit"> </input>
+			   
+			   
+				<br></br>
+			
+			</div>
+			
+			
+			<div id="grpupName" style="display:none;" >
+			   <label >group 0</label>
+			   <input type="text" id="group0"  value="group0">  </input>
+			   <br></br>
+					   
+	       </div> 
+    </div>
+	
+</div>
+
+
+
+
+</div>
+	
+<div id="idModalAbout" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 style="color:white;font-family:monaco;" > Celebrate Qatar National Day 2020 with us! </h3>
+	<br></br>
+   	        <h5 style="color:white; font-size:medium;font-weight:normal;"> Visit <a style="color:white; font-size:medium;font-weight:normal;" href="https://www.qatar.qa/en/" target="_blank">https://www.qatar.qa/en/</a></h5>
+	<br></br>
+	<h3 style="color:white;font-family:monaco;" > Designers / Contact</h3>
+	<br></br>
+		    <h5 style="color:white; font-size:medium;font-weight:bold;"> Ala Abuthawabeh - <a style="color:white; font-size:medium;font-weight:normal;" href="mailto:aabuthawabeh@hbku.edu.qa">aabuthawabeh@hbku.edu.qa</a></h5> 
+		    <h5 style="color:white; font-size:medium;font-weight:bold;"> Michael Aupetit - <a style="color:white; font-size:medium;font-weight:normal;"href="mailto:maupetit@hbku.edu.qa">maupetit@hbku.edu.qa</a></h5> 
+ 	<br></br>
+	<a href="https://www.hbku.edu.qa/en/qcri" target="_blank">
+	<img src="static/img/home/QCRI_white_logo.png" alt="QCRI logo" style="max-width:300px;max-height:300px;width:auto;height:auto;">
+	</a>
+	<br></br>
+	<h3 style="color:white; font-family:monaco;">Copyright 3-Clause BSD License</h3>
+    <h5 style="color:white; font-size:medium;font-family:courier;">
+	<p>Copyright 2020 QCRI  </p>
+    <p>All rights reserved.</p>
+    <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+    <p>1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p>
+    <p>2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</p>
+    <p>3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</p>
+    <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p></h5>
+  </div>
+
+</div> 
+
+ <div id="idModalCredit" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 style="color:white;font-family:monaco;" > Photos credit</h3>
+	<h5 style="color:white; font-size:medium;font-weight:normal;"> See original pictures and details of copyright / licences below.</h5> 
+	<br></br>
+	<!-- CREDIT TABLE -->
+	
+	<table class="table table-bordered table-hover table-condensed" style="background-color: #6c1d45;  border: 1; ">
+<table><tr><th>Photo Id</th><th>Description</th><th>Author</th><th>Source</th><th>License</th></tr>
+<tr>
+  <td>0</td>
+  <td>Sealine beach and sand dunes</td>
+  <td>Lisa Leonardelli</td>
+  <td><a href="https://www.flickr.com/photos/leolisa81/3875834760/" target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Al_Wakrah_beach_and_sandunes.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>Al Wakrah Souq beachside promenade</td>
+  <td>Bojan Mustur</td>
+  <td><a href="https://pxhere.com/en/photo/1612436" target="_blank">Click here</a></td>
+  <td><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Al_Wakrah_Souq_beachside_view.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Al Fanar Mosque</td>
+  <td>walsarabi</td>
+  <td><a href="https://pixabay.com/fr/photos/qatar-doha-corniche-b%C3%A2timents-3661994/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>Aspire Tower</td>
+  <td>Jnn</td>
+  <td><a href="https://en.wikivoyage.org/wiki/File:AspireTower2428.JPG" target="_blank">Click here</a></td>
+  <td><a href="https://en.wikivoyage.org/wiki/File:AspireTower2428.JPG" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>Camels</td>
+  <td>elcri</td>
+  <td><a href="https://pixabay.com/fr/photos/chameau-qatar-d%C3%A9sert-locomotion-4151926/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>Toward Inland Sea</td>
+  <td>thiagosalgados</td>
+  <td><a href="https://pixabay.com/fr/photos/doha-qatar-d%C3%A9sert-2905459/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>Dhow boats</td>
+  <td>BeaAmaya - Bea Amaya</td>
+  <td><a href="https://pixabay.com/fr/photos/boutre-doha-qatar-bateau-voyage-2580370/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>7</td>
+  <td>Dhow festival</td>
+  <td>LeafWriter - Vinod Thadhani </td>
+  <td><a href="https://pixabay.com/fr/photos/qatar-festival-dhow-bateau-katara-2702049/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>8</td>
+  <td>Dhows at Katara</td>
+  <td>Paul Trafford</td>
+  <td><a href="https://www.flickr.com/photos/64771032@N00/10995231344" target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Dhows_at_Katara.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>9</td>
+  <td>National Museum of Qatar</td>
+  <td>FLASHPACKER TRAVELGUIDE</td>
+  <td><a href="https://www.flickr.com/photos/flashpacker-travelguide/49125633511/ " target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Doha_National_Museum_Qatar.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>10</td>
+  <td>Fishermen</td>
+  <td>LeafWriter - Vinod Thadhani </td>
+  <td><a href="https://pixabay.com/fr/photos/lever-du-soleil-aube-matin-ciel-4441226/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>11</td>
+  <td>Qatar Flag</td>
+  <td>Sebastian Koppehel</td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Flag_of_Qatar.png" target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Flag_of_Qatar.png" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>12</td>
+  <td>Flowerbeds near West Bay Corniche</td>
+  <td>Alexey Sergeev </td>
+  <td><a href="http://www.asergeev.com/pictures/archives/compress/2013/1177/17.htm" target="_blank">Click here</a></td>
+  <td><a href="https://ar.wikipedia.org/wiki/%D9%85%D9%84%D9%81:Flowerbeds_near_corniche_in_West_Bay_district_of_Doha.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>13</td>
+  <td>HBKU Research Complex, home of QCRI</td>
+  <td>Qatar Foundation</td>
+  <td><a href="https://medium.com/qatar-foundation/qcri-innovation-for-all-2f6d6ed4e000" target="_blank">Click here</a></td>
+  <td><a href="https://policy.medium.com/medium-terms-of-service-9db0094a1e0f " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>14</td>
+  <td>Katara Cultural Village Mosque and Pigeon Towers</td>
+  <td>Bruce</td>
+  <td><a href="https://www.flickr.com/photos/theholygrail/21179199172 " target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:KataraCulturalVillageBuildings.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>15</td>
+  <td>Kite Boarding</td>
+  <td>LeafWriter - Vinod Thadhani </td>
+  <td><a href="https://pixabay.com/fr/photos/kite-surf-qatar-pearl-qnk-2017-2702057/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>16</td>
+  <td>Mangrove forest in Al Shamal</td>
+  <td>Alex Sergeev </td>
+  <td><a href="http://www.asergeev.com/pictures/archives/compress/2014/1512/01.htm" target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Mangrove_forest_in_Al_Shamal.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>17</td>
+  <td>Doha Metro</td>
+  <td>RAS_RNS - Rashid</td>
+  <td><a href="https://pixabay.com/fr/photos/qatar-doha-m%C3%A9tro-qatar-m%C3%A9tro-4696596/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>18</td>
+  <td>Museum of Islamic Art</td>
+  <td>StellarD</td>
+  <td><a href="https://en.wikivoyage.org/wiki/File:MIA_Doha_Qatar2.jpg" target="_blank">Click here</a></td>
+  <td><a href="https://en.wikivoyage.org/wiki/File:MIA_Doha_Qatar2.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>19</td>
+  <td>Oryx</td>
+  <td>SoleneC1 </td>
+  <td><a href="https://pixabay.com/fr/users/solenec1-5673897/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>20</td>
+  <td>Qatar Foundation mosque</td>
+  <td>Maryamal-khalifa</td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Qatar_foundation_mosque.jpg" target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Qatar_foundation_mosque.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>21</td>
+  <td>West Bay Resort</td>
+  <td>Konevi - ekrem  </td>
+  <td><a href="https://pixabay.com/fr/photos/doha-qatar-marine-r%C3%A9cr%C3%A9ation-3977693/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>22</td>
+  <td>Richard Serra EAST-WEST / WEST-EAST  near Zekreet</td>
+  <td>Qmamarketing</td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:RichardSerraEWWE.jpg" target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:RichardSerraEWWE.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>23</td>
+  <td>Rocky ridge of Jebel Fuwayrit</td>
+  <td>Alex Sergeev </td>
+  <td><a href="http://www.asergeev.com/pictures/archives/compress/2014/1511/02.htm" target="_blank">Click here</a></td>
+  <td><a href="" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>24</td>
+  <td>Sea Cow</td>
+  <td> PublicDomainImages</td>
+  <td><a href="https://pixabay.com/fr/photos/lamantin-mammif%C3%A8res-sous-l-eau-387195/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>25</td>
+  <td>Souq Waqif ambiance</td>
+  <td>nordcapstudio - Nordcap Studio</td>
+  <td><a href="https://pixabay.com/fr/photos/les-gens-meubles-%C3%A0-l-int%C3%A9rieur-de-3262482/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>26</td>
+  <td>Souq Waqif bird market</td>
+  <td>nordcapstudio - Nordcap Studio</td>
+  <td><a href="https://pixabay.com/fr/photos/shopping-march%C3%A9-d%C3%A9tail-les-gens-3262486/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>27</td>
+  <td>Doha Pearl Monument</td>
+  <td> Richard Stephen Haynes</td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:The_Pearl_Monument.jpg" target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:The_Pearl_Monument.jpg" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>28</td>
+  <td>The Pearl Marina</td>
+  <td>danimfal</td>
+  <td><a href="https://pixabay.com/fr/photos/marina-nuit-bateau-l-eau-mer-4922107/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>29</td>
+  <td>Trees in Aspire Park</td>
+  <td>Alma Wad</td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Trees_in_Aspire_Park.jpg" target="_blank">Click here</a></td>
+  <td><a href="https://www.flickr.com/photos/29352329@N05/6234099582/" target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>30</td>
+  <td>Hotel Park Doha</td>
+  <td>GooseB - Gustav Brandt</td>
+  <td><a href="https://pixabay.com/fr/photos/paysage-urbain-doha-qatar-ville-3566340/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>31</td>
+  <td>West Bay from Al Bidda Park</td>
+  <td>walsarabi</td>
+  <td><a href="https://pixabay.com/fr/photos/doha-ligne-d-horizon-qatar-3550220/" target="_blank">Click here</a></td>
+  <td><a href="https://pixabay.com/service/license/ " target="_blank">Click here</a></td>
+</tr>
+<tr>
+  <td>32</td>
+  <td>Zekreet Limestones</td>
+  <td>Steven Byles </td>
+  <td><a href="https://www.flickr.com/photos/sjbyles/7242412130/ " target="_blank">Click here</a></td>
+  <td><a href="https://commons.wikimedia.org/wiki/File:Zekreet_(7242412130).jpg" target="_blank">Click here</a></td>
+</tr>
+</table>
+		<!-- END OF CREDIT TABLE -->	
+  </div>
+
+</div> 
+   
+			 
+<!-- Manage Modal "About"-->
+ <script>
+// Get the modal
+var modalAbout = document.getElementById("idModalAbout");
+var modalCredit = document.getElementById("idModalCredit");
+
+// Get the button that opens the modal
+var btnAbout = document.getElementById("idBtnAbout");
+var btnCredit = document.getElementById("idBtnCredit");
+
+// Get the <span> element that closes the modal
+var span0 = document.getElementsByClassName("close")[0];
+var span1 = document.getElementsByClassName("close")[1];
+
+// When the user clicks on the button, open the modal
+btnAbout.onclick = function() {
+  modalAbout.style.display = "block";
+}
+btnCredit.onclick = function() {
+  modalCredit.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span0.onclick = function() {
+  modalCredit.style.display = "none";
+  modalAbout.style.display = "none";
+}
+span1.onclick = function() {
+  modalCredit.style.display = "none";
+  modalAbout.style.display = "none";
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modalAbout) {
+    modalAbout.style.display = "none";
+  }
+  if (event.target == modalCredit) {
+    modalCredit.style.display = "none";
+  }
+}
+</script>
+
+<script src="config/configTreemapGraphicElements.js"></script> 
+<script src="config/configTreemapImagesData.js"></script>  
+
+<script src="static/code/GroupingImages/static/js/seedrandom/seedrandom.min.js"></script> 
+<script src="static/code/GroupingImages/static/js/utlities/utils.js"></script>
+<script src="static/code/GroupingImages/static/js/utlities/computingPowerDiagram.js"></script>
+<script  src='static/code/GroupingImages/static/js/user/unparsedData.js' id="unparsed"> </script>
+<script  src='static/code/GroupingImages/static/js/user/readDataFrmCSV.js'> </script>   
+<script  src='static/code/GroupingImages/static/js/user/createScalabilityBarChart.js'>  </script> 
+<script  src="static/code/GroupingImages/static/js/utlities/computingWeightedVoronoi.js"></script> 
+<script  src='static/code/GroupingImages/static/js/user/creatVoronoiWeighted.js'>  </script>   
+<script src='static/code/GroupingImages/static/js/user/saveData.js'>  </script>
+<script src='static/code/GroupingImages/static/js/user/saveState.js'>  </script>  
+<script src= "static/code/GroupingImages/static/js/reset/reset.js"> </script> 
+<script src= "static/code/GroupingImages/static/js/showSolution/showSolution.js"> </script> 
+<script src= "static/code/GroupingImages/static/js/expandImage/expandImage.js"> </script> 
+<script src= "static/code/GroupingImages/static/js/scoreCalculation/scoreCalculation.js"> </script>
+  
+
+<script >
+//save current d3 V4
+d3V1= d3;
+</script> 
+
+<!-- <script src="static/js/d3plus/d3plus.min.js"></script>  -->
+<script src="static/code/GroupingImages/static/js/d3plus/d3plus.full.min.js"></script>
+<script >
+//save  d3 V d3plus then switch to d3 v4 
+d3plusVersion= d3;
+d3=d3V1;
+</script> 
+
+
+
+<script>
+document.getElementById("grpupName").style.display = "none";
+
+function updateAllGroupIDFunction(){
+    var list = document.querySelectorAll("[type='text']");  
+	for(var i=0; i<list.length;++i){
+	   element=list[i];
+	   updateGroupID(i, element.value);
+	}	  
+}
+
+
+
+function reScaleDrawingFunction(){
+   var sliderValue=document.getElementById("myRange").value;
+   setVisBudget(sliderValue);
+   drawScalabilityBarChart();
+   updateParentNodesWeightGlobal();
+   reDrawAllGlobal();
+
+}
+
+
+function scaleFunction(outputID,valueLocal){
+   document.getElementById(outputID).value=valueLocal;   
+}
+
+
+ 
+ 
+ function reScaleDrawingInitialFunction(){
+   //var sliderValue=document.getElementById("myRange").value;
+   var userDataCopy=getUserData();
+   var userDataParsed=d3.csvParse(userDataCopy);//
+   //console.log(userDataParsed.length);
+   var sliderValue=userDataParsed.length;
+   console.log("reScaleDrawingInitialFunction");
+   console.log(sliderValue);
+ 
+   
+   setVisBudget(sliderValue);
+   drawScalabilityBarChart();
+   updateParentNodesWeightGlobal();
+   reDrawAllGlobal();
+
+   CreatePDFfromHTML();
+}
+
+
+ 
+document.getElementById("arabicId").addEventListener("click", arabicFunction);
+function arabicFunction(){
+ 
+ document.getElementById("instructionsDiv").style.direction="rtl";
+ document.getElementById("c0").innerHTML="اليوم الوطني لدولة قطر 2020" ;
+ document.getElementById("c1").innerHTML="احتفل باليوم الوطني لدولة قطر وقم بتشكيل لوحة فسيفساء من الصور الايقونية";
+ document.getElementById("c2").innerHTML="اسحب الصور خارج الاطار لعمل مجموعة";
+ document.getElementById("c3").innerHTML="اضف عدد من الصور الى  المجموعة ";
+ document.getElementById("c4").innerHTML="استخدم الفارة لتكبير الصور بتحريك الزر الاوسط ";
+ document.getElementById("c5").innerHTML="اضغط زر المشاركة بعد الانتهاء لحفظ الصور و مشاركتها مع الاصدقاء"; 
+ document.getElementById("c6").innerHTML="قم بتشكيل  مجموعات الصور حسب الموضوعات او الاشكال او الالوان";
+ 
+ document.getElementById("saveImageButtonId").value="شارك" ;
+ document.getElementById("idBtnAbout").value="من نحن" ;
+
+}
+
+
+document.getElementById("englishId").addEventListener("click", englishFunction);
+function englishFunction(){
+  
+  document.getElementById("instructionsDiv").style.direction="ltr"; 
+  document.getElementById("c0").innerHTML="Qatar National Day 2020" ;
+  document.getElementById("c1").innerHTML="Celebrate Qatar National Day by creating your mosaic of iconic pictures";
+  document.getElementById("c2").innerHTML="Drag images out to create groups;";
+  document.getElementById("c3").innerHTML="Drag images into groups;";
+  document.getElementById("c4").innerHTML="Use scroll-wheel to resize all images;";
+  document.getElementById("c5").innerHTML="Share with your friends..."; 
+  document.getElementById("c6").innerHTML="Play with topics, colors, shapes...";
+   
+  document.getElementById("saveImageButtonId").value="Share" ; 
+  document.getElementById("idBtnAbout").value="About";
+}
+
+    	 
+</script>	
+
+<script>
+
+</script>
+
+
+
+</body>	  
+</html>
+
+

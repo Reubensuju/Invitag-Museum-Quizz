@@ -1,0 +1,4 @@
+Script to Expand Image: static/code/GroupingImages/static/js/expandImage/expandImage.js
+Script to Reset Groups: static/code/GroupingImages/static/js/reset/reset.js
+Script to Calculate Score and Mismatch: static/code/GroupingImages/static/js/scoreCalculation/scoreCalculation.js
+Script to Show Solution: static/code/GroupingImages/static/js/showSolution/showSolution.js

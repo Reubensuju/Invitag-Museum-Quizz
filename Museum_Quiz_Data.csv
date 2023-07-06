@@ -1,0 +1,46 @@
+ID,Artist,Painting Name,Year,Ground Truth
+0,Andy Warhol,10 Marilyns,1967,1
+1,Andy Warhol,Brooklyn Bridge,1983,1
+2,Andy Warhol,Cow,1971,1
+3,Andy Warhol,Detail of The Last Supper,1986,1
+4,Andy Warhol,Flowers,1970,1
+5,Andy Warhol,Sunset,1972,1
+6,Banksy,Balloon Girl,2002,2
+7,Banksy,Flower Bomber,2005,2
+8,Banksy,Maid,2006,2
+9,Banksy,Peace,,2
+10,Banksy,Robot,2007,2
+11,Claude Monet,A Pathway in Monet's Garden Giverny,1902,3
+12,Claude Monet,Monet Tulip Fields,1886,3
+13,Claude Monet,Path in the Wheat at Pourville,1882,3
+14,Claude Monet,Red Boats Argenteuil,1875,3
+15,Claude Monet,The Artist's garden in Argenteuil ,1873,3
+16,Claude Monet,The waterlily pond with the japanese bridge,1899,3
+17,Claude Monet,Water Lilies,1916,3
+18,Giuseppe Arcimboldo,Winter,1573,4
+19,Giuseppe Arcimboldo,Flowers,,4
+20,Giuseppe Arcimboldo,Fruits,1590,4
+21,Giuseppe Arcimboldo,The Admiral,,4
+22,Giuseppe Arcimboldo,The Librarian,1570,4
+23,Henri Rousseau,Exotic Landscape,1910,5
+24,Henri Rousseau,The Merry Jesters,1906,5
+25,Henri Rousseau,Tiger in a tropical storm surprised,1891,5
+26,Henri Rousseau,Tropical forest with Monkeys,1910,5
+27,Pablo Picasso,Fillette Au Tricycle,1954,6
+28,Pablo Picasso,Le Verte Galant,1943,6
+29,Pablo Picasso,Mediterranean Landscape,1952,6
+30,Pablo Picasso,Portrait de Femme au Chapeau et a la Robe Vert Jaune,1943,6
+31,Pablo Picasso,Tête d'homme,1964,6
+32,Pablo Picasso,The Dream,1932,6
+33,Pablo Picasso,Violin and Guitar,1913,6
+34,Salvador Dalí,Aparition of the face of Aphrodite,1938,7
+35,Salvador Dalí,Les Elephants,1948,7
+36,Salvador Dalí,Persistance of Memory,1931,7
+37,Salvador Dalí,Reflections of Elephants,1937,7
+38,Salvador Dalí,The Persistence of Memory,1931,7
+39,Salvador Dalí,The temptation of St. Anthony,1946,7
+40,Vincent van Gogh,Landscape with house and ploughman,1889,8
+41,Vincent van Gogh,Seascape near Les Saintes-Maries-de-la-Mer,1888,8
+42,Vincent van Gogh,The Olive trees,1889,8
+43,Vincent van Gogh,The Starry Night,1889,8
+44,Vincent van Gogh,Wheatfield with Cypresses,1889,8

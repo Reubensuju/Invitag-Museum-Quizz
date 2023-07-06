@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type='text/javascript' src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="./d3plus.full.min.js"></script>
+	
+	   <style type="text/css">
+
+    
+
+	
+	    </style>
+		
+		
+</head>
+<body>
+
+<svg>
+    
+    
+    <text id="rectWrap"  y="50px" font-size="12">Here is a long text string that SVG should wrap by default, but it does not.</text>
+</svg>
+
+<script>
+
+  // Wrap text in a rectangle.
+  d3plus.textwrap()
+    .container(d3.select("#rectWrap"))
+    .shape("square")
+    .height(100)
+	.width(50)
+	.draw();
+</script>	
+	
+</body>
+</html>
