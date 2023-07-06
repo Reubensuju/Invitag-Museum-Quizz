@@ -29,7 +29,7 @@ Finally, to launch the server, type the command:
 
 Your prompt must look like this
 
-![](RackMultipart20230706-1-yxtum7_html_60e6f3a7921a56f9.png)
+![](/images/prompt.png "Server Prompt.")
 
 Open the URL at which the application is being served.
 
@@ -45,7 +45,7 @@ Application Loading
 
 The Application Home Screen looks like this
 
-![](RackMultipart20230706-1-yxtum7_html_664ff223fd550651.png)
+![](/images/home.png "Dashboard Home.")
 
 Use the mouse to create groups.
 
